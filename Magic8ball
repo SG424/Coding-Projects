@@ -1,0 +1,35 @@
+import flet as ft
+import random
+
+def main(page: ft.Page):
+    
+    responses = [
+                "It is certain",
+                "Without a doubt",
+                "You may rely on it",
+                "Yes — definitely",
+                "Most likely",
+                "Reply hazy, try again",
+                "Ask again later",
+                "Cannot predict now",
+                "Don't count on it",
+                "Very doubtful", "yes ", "no"]
+
+    def xy(e):
+        pregunta = pregunta_input.value
+        magic = random.choice(responses)
+        resultado.value = "pregunta: " + pregunta + "  Respuesta: " + magic
+
+        page.update()
+
+    page.theme_mode = ft.ThemeMode.LIGHT
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    userquestion = ft.Text(value="Ask your question?")
+    pregunta_input = ft.TextField(label="Enter", width= 400 )
+    ask = ft.Button(content=ft.Text("Dale", size=18), width=200, height= 60, on_click=xy)
+    resultado = ft.Text(value= "Tu respuesta aparecera aqui", size=20,text_align=ft.TextAlign.CENTER)
+
+    page.add(userquestion, pregunta_input, ask, resultado)
+    
+
+ft.run(main)
